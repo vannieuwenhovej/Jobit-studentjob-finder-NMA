@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">NMA</string>
+    <string name="appTitle">YOUR OPEN JOBS</string>
+    <string name="filterPriceHighToLOW">€ (hoog - laag)</string>
+    <string name="filterPriceLowToHigh">€ (laag - hoog)</string>
+    <string name="strFilter">filter</string>
+    <string name="btnFilterPriceHighToLow">€ ↓</string>
+    <string name="btnFilterPriceLowToHigh">€ ↑</string>
+    <string name="BtnFilterDateAdded">Datum</string>
+    <string name="job1Title">Winkelbediende</string>
+    <string name="job1SubTitle">€ 11,20-12,80 /u</string>
+    <string name="job1Period">27 maart - 1 april</string>
+    <string name="Job1Description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqufea.</string>
+    <string name="btnNewJob">+ New Job</string>
+    <string name="NewJobActvTitle">ADD NEW JOB</string>
+    <string name="btnSave">Save Job</string>
+    <string name="functieTitel">Functie titel:</string>
+    <string name="hourlyWageGross">Hourly Wage (Gross):</string>
+    <string name="descriptionJob">Description of Job</string>
+    <string name="wantedProfile">Wanted Profile</string>
+    <string name="txtTillDate">Till</string>
+    <string name="rscFormat">YYYY-MM-DD</string>
+    <string name="testResource">This is a test...</string>
+    <string name="txtJobAs">Job as</string>
+    <string name="btnUpdateJob">UPDATE JOB</string>
+    <string name="btnDeleteJob">DELETE JOB</string>
+    <string name="viewSollicitants">View Sollicitants</string>
+    <string name="sollicitants">Sollicitants</string>
+    <string name="sollicitantsCaps">SOLLICITANTS</string>
+    <string name="noSollicitantsCaps">NO SOLLICITANTS</string>
+    <string name="sollicitant">SOLLICITANT</string>
+    <string name="createAJob">Create a job</string>
+    <item type="id" name="btnAddJob"/>
+</resources>
