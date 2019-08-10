@@ -25,7 +25,7 @@ public class AddNewJobActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_job);
     }
 
-    protected void btnSaveJob(View vw) {
+    public void btnSaveJob(View vw) {
         EditText inputFunctie = (EditText) findViewById(R.id.inputFunctie);
         EditText inputWage = (EditText) findViewById(R.id.inputWage);
         EditText inputDescription = (EditText) findViewById(R.id.inputDescription);

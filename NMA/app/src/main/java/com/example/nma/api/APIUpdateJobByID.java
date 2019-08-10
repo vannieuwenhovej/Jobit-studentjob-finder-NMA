@@ -1,6 +1,7 @@
 package com.example.nma.api;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.nma.company.JobOffer;
 import com.example.nma.config.ConnectionConfig;
@@ -15,6 +16,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 public class APIUpdateJobByID extends AsyncTask<Void, String, String> {
 
@@ -33,22 +36,24 @@ public class APIUpdateJobByID extends AsyncTask<Void, String, String> {
 
     @Override
     protected String doInBackground(Void... voids) {
-        String json = makeJsonOfJob(jobOfferToSend);
-        String url = ConnectionConfig.getServerAddress() + "/nmapost/updatejob/" + jobOfferToSend.getJobOfferID() + "/" + json;
+        String json = makeJsonOfJob(jobOfferToSend); // + "/" + json;
+        String url = ConnectionConfig.getServerAddress() + "/nma/updatejob/" + jobOfferToSend.getJobOfferID();
         URL obj = null;
         try {
+
             obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
             //add reuqest header
-            con.setRequestMethod("POST");
-            con.setRequestProperty("User-Agent", "NMA/Android-JobApplication");
-            con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+            con.setRequestMethod("PUT");
+            con.setRequestProperty("Content-Type", "application/json");
+            con.setRequestProperty("Accept", "application/json");
 
-            // Send post request
+            // Send PUT request
             con.setDoOutput(true);
             OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
-            wr.flush();
+            Log.d("JSON:", json);
+            wr.write( json );
             wr.close();
             int responseCode = con.getResponseCode();
 
@@ -61,6 +66,7 @@ public class APIUpdateJobByID extends AsyncTask<Void, String, String> {
             }
             in.close();
             con.disconnect();
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (ProtocolException e) {

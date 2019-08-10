@@ -55,6 +55,7 @@ public class DisplayJobActivity extends AppCompatActivity implements AsyncRespon
     public void btnDeleteJob(View vw){
         apiDelJob = new APIDeleteJobByID(jobID);
         apiDelJob.execute();
+        Toast.makeText(getBaseContext(), jobAfterAPICall.getFunction() + " with ID " + jobAfterAPICall.getJobOfferID() + " succesfully deleted.", Toast.LENGTH_LONG).show();
         finish();
     }
 
