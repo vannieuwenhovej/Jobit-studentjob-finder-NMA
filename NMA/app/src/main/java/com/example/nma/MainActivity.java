@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nma.api.APIRetrieveAllOpenJobs;
 import com.example.nma.api.interfaces.AsyncResponseJobOffers;
@@ -54,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements AsyncResponseJobO
     }
     protected void btnAddJob() {
         startActivity(new Intent(MainActivity.this, AddNewJobActivity.class));
+    }
+
+    protected void btnSaveJob(View vw){
+        System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
     }
 
     protected void btnSeeJob(JobOffer job) {

@@ -1,12 +1,19 @@
 package com.example.nma.api;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.nma.config.ConnectionConfig;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -24,21 +31,24 @@ public class APIDeleteJobByID extends AsyncTask<Void, String, String> {
 
     @Override
     protected String doInBackground(Void... voids) {
-        String url = ConnectionConfig.getServerAddress() + "/nmapost/deletejob/" + jobID;
+        Log.d("DELETE", "delete " + jobID);
+        String url = ConnectionConfig.getServerAddress() + "/nma/deletejob/" + jobID;
         URL obj = null;
         try {
             obj = new URL(url);
             HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
             //add reuqest header
-            con.setRequestMethod("POST");
-            con.setRequestProperty("User-Agent", "NMA/Android-JobApplication");
-            con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
+            con.setRequestMethod("DELETE");
+            con.setRequestProperty(
+                    "Content-Type", "application/x-www-form-urlencoded" );
 
             // Send post request
             con.setDoOutput(true);
             OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
-            wr.flush();
+
+//            wr.write();
+//            wr.write(jobID);
             wr.close();
             int responseCode = con.getResponseCode();
 
