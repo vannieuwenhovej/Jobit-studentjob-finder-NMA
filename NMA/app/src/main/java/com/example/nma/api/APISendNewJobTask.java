@@ -1,6 +1,7 @@
 package com.example.nma.api;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.nma.config.ConnectionConfig;
 
@@ -24,6 +25,7 @@ public class APISendNewJobTask extends AsyncTask<Void, String,String> {
 
     @Override
     protected String doInBackground(Void... voids) {
+        Log.d("DATE", "date after func startdate: " + jobOfferToSendInJSON);
         String url = ConnectionConfig.getServerAddress() + "/nmapost/newjob?json=" + jobOfferToSendInJSON;
         URL obj = null;
         try {

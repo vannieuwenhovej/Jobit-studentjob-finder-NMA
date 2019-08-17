@@ -3,6 +3,7 @@ package com.example.nma;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,7 +29,7 @@ public class DisplayJobActivity extends AppCompatActivity implements AsyncRespon
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        this.setTitle("Your Open Jobs");
+        this.setTitle("View job");
         jobID = getIntent().getExtras().getInt("jobID");
         apiGetJob = new APIRetrieveJobByID(jobID);
         super.onCreate(savedInstanceState);
@@ -60,7 +61,8 @@ public class DisplayJobActivity extends AppCompatActivity implements AsyncRespon
     }
 
     public void btnUpdateJob(View vw){
-        SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd", Locale.ENGLISH);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        Log.d("DATE", "start job: " + jobAfterAPICall.getStartDate());
 
         EditText inputFunctie = findViewById(R.id.inputFunctie);
         EditText inputWage = findViewById(R.id.inputWage);
@@ -85,6 +87,8 @@ public class DisplayJobActivity extends AppCompatActivity implements AsyncRespon
                     JobOffer jobWithUpdatedDetails = new JobOffer(jobID, null, strFunctie, Double.parseDouble(strWage), strDescription,
                             null,strWanted, formatter.parse(strStartDate), formatter.parse(strEndDate));
                     updateJobToServer(jobWithUpdatedDetails);
+                    Log.d("DATE", "start str: " + strStartDate);
+                    Log.d("DATE", "start formatted: " + formatter.parse(strStartDate));
                 }
                 //else{} there is nothing to do except to go back to previous activity which is MainActivity
             } catch (ParseException e) {
@@ -106,11 +110,13 @@ public class DisplayJobActivity extends AppCompatActivity implements AsyncRespon
 
             @Override
             public void run() {
+
                 setTextInInputs(job);
             }
         });
     }
     private void setTextInInputs(JobOffer job) {
+        this.setTitle(job.getFunction() + " (" + job.getJobOfferID() + ")");
         jobAfterAPICall = job;
         SimpleDateFormat formatter = new SimpleDateFormat("YYYY-MM-dd", Locale.ENGLISH);
         TextView inputFunctie = findViewById(R.id.inputFunctie);

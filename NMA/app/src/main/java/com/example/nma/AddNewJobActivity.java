@@ -2,6 +2,7 @@ package com.example.nma;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -60,6 +61,7 @@ public class AddNewJobActivity extends AppCompatActivity {
                     " till " + format.format(endDate), Toast.LENGTH_SHORT).show();
 
             try {
+                Log.d("DATE", "date before func startdate: " + newJobOffer.getStartDate());
                 makeJSONAndSendToServer(newJobOffer); // Sends the Job as JSON to the node.js server
             } catch (IOException e) {
                 e.printStackTrace();

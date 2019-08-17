@@ -1,6 +1,7 @@
 package com.example.nma.api;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.example.nma.api.interfaces.AsyncResponseJobOfferByID;
 import com.example.nma.api.interfaces.AsyncResponseSollicitants;
@@ -89,8 +90,8 @@ public class APIRetrieveJobByID extends AsyncTask<Void, String, String> implemen
     }
 
     private void parseDataToJSON(String s) throws ParseException {
-        SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
-        SimpleDateFormat newFormat = new SimpleDateFormat("YYYY-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH);
+        Log.d("DATE", "after called to view startdate in json" + s);
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
         //Firstly get array of jobs as Json.
         JsonArray jsonObjects = new JsonParser()
                 .parse(s)
@@ -103,7 +104,9 @@ public class APIRetrieveJobByID extends AsyncTask<Void, String, String> implemen
                     null, obj.get("fldFunctie").getAsString(), obj.get("fldBrutoLoonPerUur").getAsDouble(),
                     obj.get("fldVacatureBeschrijving").getAsString(), null, obj.get("fldGezochtProfielUitleg").getAsString(),
                     format.parse(obj.get("fldStartDatum").getAsString()), format.parse(obj.get("fldEindDatum").getAsString()));
+
             jobs.add(job);
+
         }
         onPostExecute(jobs.get(0));
     }
