@@ -1,7 +1,6 @@
 package com.example.nma.api;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.example.nma.company.JobOffer;
 import com.example.nma.config.ConnectionConfig;
@@ -52,7 +51,6 @@ public class APIUpdateJobByID extends AsyncTask<Void, String, String> {
             // Send PUT request
             con.setDoOutput(true);
             OutputStreamWriter wr = new OutputStreamWriter(con.getOutputStream());
-            Log.d("JSON:", json);
             wr.write( json );
             wr.close();
             int responseCode = con.getResponseCode();
